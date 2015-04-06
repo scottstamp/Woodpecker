@@ -188,3 +188,13 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# Miscellaneous
+bin/
+obj/
+*.html
+*.rar
+*.zip
+db.config
+*.sql
+*.xml

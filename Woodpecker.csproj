@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3542E2DA-113E-44CD-BFAC-E33461D70D05}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Woodpecker</RootNamespace>
+    <AssemblyName>Woodpecker</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>J:\Windows.old.000\Users\Scott\Desktop\Freedom\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Configuration.cs" />
+    <Compile Include="Core\Logging.cs" />
+    <Compile Include="Game\Arcade\Games\arcadeGame.cs" />
+    <Compile Include="Game\Arcade\Games\arcadeGameArena.cs" />
+    <Compile Include="Game\Arcade\Games\arcadeGameLobby.cs" />
+    <Compile Include="Game\Arcade\Games\arcadeGamePlayer.cs" />
+    <Compile Include="Game\Arcade\Games\arcadeGameType.cs" />
+    <Compile Include="Game\Arcade\arcadeManager.cs" />
+    <Compile Include="Game\Arcade\arcadeReactor.cs" />
+    <Compile Include="Game\Externals\externalManager.cs" />
+    <Compile Include="Game\Items\Bots\virtualBotInformation.cs" />
+    <Compile Include="Game\Items\itemDefinition.cs" />
+    <Compile Include="Game\Items\carryItemHelper.cs" />
+    <Compile Include="Game\Items\itemInstance.cs" />
+    <Compile Include="Game\Items\itemManager.cs" />
+    <Compile Include="Game\Items\itemStripHandler.cs" />
+    <Compile Include="Game\Items\Pets\virtualPetInformation.cs" />
+    <Compile Include="Game\Messenger\messengerBuddyRequest.cs" />
+    <Compile Include="Game\Messenger\messengerPostmaster.cs" />
+    <Compile Include="Game\Moderation\chatLog.cs" />
+    <Compile Include="Game\Moderation\chatType.cs" />
+    <Compile Include="Game\Moderation\moderationManager.cs" />
+    <Compile Include="Game\Moderation\moderationReactor.cs" />
+    <Compile Include="Game\reactorGenericMethods.cs" />
+    <Compile Include="Game\Messenger\messengerBuddy.cs" />
+    <Compile Include="Game\Messenger\messengerReactor.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\Bots.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\Dices.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\floorItems.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\Pets.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\Rollers.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\soundMachines.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special floor items\Teleporters.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special wall items\postIts.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\wallItems.cs" />
+    <Compile Include="Game\Rooms\Pathfinding\roomTile.cs" />
+    <Compile Include="Game\Rooms\Reactors\botResponse.cs" />
+    <Compile Include="Game\Rooms\Units\roomPet.cs" />
+    <Compile Include="Game\Rooms\Units\roomUnit.cs" />
+    <Compile Include="Game\Rooms\Instance\roomUnitMovements.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\itemsCore.cs" />
+    <Compile Include="Game\Rooms\Pathfinding\blisterMolePathfinder.cs" />
+    <Compile Include="Game\Rooms\Pathfinding\rotationCalculator.cs" />
+    <Compile Include="Game\Rooms\Reactors\chatCommands.cs" />
+    <Compile Include="Game\Rooms\Reactors\flatReactor.cs" />
+    <Compile Include="Game\Rooms\Instance\roomMap.cs" />
+    <Compile Include="Game\Rooms\Pathfinding\roomTileState.cs" />
+    <Compile Include="Game\Rooms\Units\roomUser.cs" />
+    <Compile Include="Game\Rooms\Instance\roomUnits.cs" />
+    <Compile Include="Game\Rooms\Instance\roomCore.cs" />
+    <Compile Include="Game\Rooms\Information\roomAccessType.cs" />
+    <Compile Include="Game\Rooms\Information\roomCategoryInfo.cs" />
+    <Compile Include="Game\Rooms\Information\roomInformation.cs" />
+    <Compile Include="Game\Rooms\Reactors\navigatorReactor.cs" />
+    <Compile Include="Game\Rooms\Reactors\roomReactor.cs" />
+    <Compile Include="Game\Rooms\roomManager.cs" />
+    <Compile Include="Game\Rooms\Information\roomModel.cs" />
+    <Compile Include="Game\securityReactor.cs" />
+    <Compile Include="Game\Store\storeCataloguePage.cs" />
+    <Compile Include="Game\Store\storeCatalogueSale.cs" />
+    <Compile Include="Game\Store\storeReactor.cs" />
+    <Compile Include="Game\Users\basicUserInformation.cs" />
+    <Compile Include="Game\Messenger\messengerManager.cs" />
+    <Compile Include="Game\Messenger\messengerMessage.cs" />
+    <Compile Include="Game\Store\storeManager.cs" />
+    <Compile Include="Game\Users\userAccessInformation.cs" />
+    <Compile Include="Net\Game\Messages\genericMessageFactory.cs" />
+    <Compile Include="Net\Remote\remoteConnection.cs" />
+    <Compile Include="Net\Remote\remoteConnectionManager.cs" />
+    <Compile Include="Net\Remote\remoteRequestHandling.cs" />
+    <Compile Include="Security\Ciphering\rc4Core.cs" />
+    <Compile Include="Security\Ciphering\rc4Provider.cs" />
+    <Compile Include="Security\Cryptography\md5Provider.cs" />
+    <Compile Include="Game\globalReactor.cs" />
+    <Compile Include="Game\Users\Roles\roleManager.cs" />
+    <Compile Include="Game\Users\Reactors\loginReactor.cs" />
+    <Compile Include="Game\reactorCore.cs" />
+    <Compile Include="Net\Game\reactorHandler.cs" />
+    <Compile Include="Game\Users\userInformation.cs" />
+    <Compile Include="Game\Users\userManager.cs" />
+    <Compile Include="Game\Users\Roles\userRoles.cs" />
+    <Compile Include="Game\Users\Reactors\userReactor.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Net\Game\Messages\clientMessageTargetMethodNames.cs" />
+    <Compile Include="Specialized\Encoding\base64Encoding.cs" />
+    <Compile Include="Specialized\Encoding\mixedEncoding.cs" />
+    <Compile Include="Specialized\Encoding\wireEncoding.cs" />
+    <Compile Include="Net\Game\Messages\clientMessage.cs" />
+    <Compile Include="Net\Game\Messages\serverMessage.cs" />
+    <Compile Include="Sessions\Session.cs" />
+    <Compile Include="Sessions\sessionException.cs" />
+    <Compile Include="Sessions\sessionManager.cs" />
+    <Compile Include="Specialized\Enhancement\AttributeSet.cs" />
+    <Compile Include="Specialized\Fun\FunUtils.cs" />
+    <Compile Include="Specialized\Text\stringFunctions.cs" />
+    <Compile Include="Specialized\Text\fuseStringBuilder.cs" />
+    <Compile Include="Storage\Database.cs" />
+    <Compile Include="Storage\databaseException.cs" />
+    <Compile Include="mainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainForm.Designer.cs">
+      <DependentUpon>mainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Net\Game\gameConnection.cs" />
+    <Compile Include="Net\Http\httpProvider.cs" />
+    <Compile Include="Net\Game\gameConnectionManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\publicRoomItemMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\publicRoomItemMainForm.Designer.cs">
+      <DependentUpon>publicRoomItemMainForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="mainForm.resx">
+      <DependentUpon>mainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\itemDefinitionEditorMainForm.resx">
+      <DependentUpon>itemDefinitionEditorMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Tools\publicRoomItemMainForm.resx">
+      <DependentUpon>publicRoomItemMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tools\itemDefinitionEditorMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\itemDefinitionEditorMainForm.Designer.cs">
+      <DependentUpon>itemDefinitionEditorMainForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application.png" />
+    <None Include="Resources\bomb.png" />
+    <None Include="Resources\book.png" />
+    <None Include="Resources\book_open.png" />
+    <None Include="Resources\book_previous.png" />
+    <None Include="Resources\bricks.png" />
+    <None Include="Resources\bug_error.png" />
+    <None Include="Resources\building.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\group.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\hourglass_delete.png" />
+    <None Include="Resources\house.png" />
+    <None Include="Resources\key.png" />
+    <None Include="Resources\script.png" />
+    <None Include="Resources\server.png" />
+    <None Include="Resources\server_lightning.png" />
+    <None Include="Resources\transmit.png" />
+    <None Include="Resources\transmit_go.png" />
+    <None Include="Resources\vcard.png" />
+    <None Include="Resources\wand.png" />
+    <None Include="Resources\bullet_key.png" />
+    <None Include="Resources\bell.png" />
+    <None Include="Resources\bell_error.png" />
+    <None Include="Resources\user_gray.png" />
+    <None Include="Resources\group1.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\shape_square_add.png" />
+    <None Include="Resources\shape_square_delete.png" />
+    <None Include="Resources\page_white_magnify.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\arrow_down.png" />
+    <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Net\Mus\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
