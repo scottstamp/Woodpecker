@@ -1,0 +1,5 @@
+﻿language: csharp
+solution: Woodpecker.sln
+install:
+	- sudo apt-get install -y gtk-sharp2
+	- nuget restore Woodpecker.sln
