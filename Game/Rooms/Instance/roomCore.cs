@@ -175,6 +175,9 @@ namespace Woodpecker.Game.Rooms.Instances
                     if (this.hasBots)
                         this.runBotActors();
 
+                    if (this.hasCamera())
+                        this.runCamera();
+
                     if (this.hasPets)
                         this.runPetActors();
 

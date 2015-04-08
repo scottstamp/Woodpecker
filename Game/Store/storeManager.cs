@@ -439,7 +439,7 @@ namespace Woodpecker.Game.Store
                     if(dRow["customdata"] != DBNull.Value)
                         customData = (string)dRow["customdata"];
 
-                    requestSaleShipping(userID, saleCode, false, false, null, customData);
+                    requestSaleShipping(userID, saleCode, false, false, null, customData ?? "");
                 }
             }
         }

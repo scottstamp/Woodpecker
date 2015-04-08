@@ -34,7 +34,7 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
                 {
                     string Command = Text.Substring(1).Split(' ')[0];
                     string Body = "";
-                    if(Text.Contains(" "))
+                    if (Text.Contains(" "))
                         Body = Text.Substring(Command.Length + 2);
 
                     switch (Command)
@@ -184,7 +184,7 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
                                 string Message = Body.Substring(Body.IndexOf(' ') + 1);
                                 if (Username.Length > 0 && Message.Length > 0)
                                 {
-                                    if(Engine.Game.Moderation.requestAlert(Session.User.ID, Username, Message, ""))
+                                    if (Engine.Game.Moderation.requestAlert(Session.User.ID, Username, Message, ""))
                                         Session.castWhisper("User has been alerted.");
                                 }
                             }
@@ -199,7 +199,7 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
                                 string Message = Body.Substring(Body.IndexOf(' ') + 1);
                                 if (Username.Length > 0)
                                 {
-                                    if(Engine.Game.Moderation.requestKickFromRoom(Session.User.ID, Username, Message, ""))
+                                    if (Engine.Game.Moderation.requestKickFromRoom(Session.User.ID, Username, Message, ""))
                                         Session.castWhisper("User has been kicked.");
                                 }
                             }
@@ -268,7 +268,7 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
 
                                 if (Body.Length > 0)
                                 {
-                                    if(Engine.Game.Moderation.requestRoomAlert(Session.User.ID, Session.roomID, Body, ""))
+                                    if (Engine.Game.Moderation.requestRoomAlert(Session.User.ID, Session.roomID, Body, ""))
                                         Session.castWhisper("Room Alerted.");
                                 }
                             }
@@ -281,7 +281,7 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
 
                                 if (Body.Length > 0)
                                 {
-                                    if(Engine.Game.Moderation.requestRoomKick(Session.User.ID, Session.roomID, Body, ""))
+                                    if (Engine.Game.Moderation.requestRoomKick(Session.User.ID, Session.roomID, Body, ""))
                                         Session.castWhisper("The room has been emptied.");
                                 }
                             }
@@ -349,19 +349,27 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
 
                                 Session.sendHandStrip("last");
                             }
-                        break;
+                            break;
 
                         case "woodpecker":
                             {
-                            if (Body.Length > 0)
-                            {
-                                //Engine.Game.Items.createItemInstance(messageID, Session.User.ID, customMessage);
-                                Engine.Game.Moderation.castHotelAlert(Session.User.ID, Body);
-                                Session.castWhisper("Bedankt Nillus voor de test <3");
-                                //Session.sendHandStrip("last");
+                                if (Body.Length > 0)
+                                {
+                                    //Engine.Game.Items.createItemInstance(messageID, Session.User.ID, customMessage);
+                                    Engine.Game.Moderation.castHotelAlert(Session.User.ID, Body);
+                                    Session.castWhisper("Bedankt Nillus voor de test <3");
+                                    //Session.sendHandStrip("last");
+                                }
                             }
-                        }
-                        break;
+                            break;
+
+                        case "multiplier":
+                            int.TryParse(Body, out this.Session.PurchaseMultiplier);
+                            break;
+
+                        case "stack":
+                            this.Session.StackAnything = float.TryParse(Body, out this.Session.StackHeight);
+                            break;
                         #endregion
 
                         default:

@@ -108,7 +108,8 @@ namespace Woodpecker.Tools
             {
                 String[] value = line.Split(' ');
                 String id = Engine.Game.Items.getItemDefinitionByName(value[1]).ID.ToString();
-                saveItemInstance(id, textBox2.Text, value[2], value[3], value[4], value[5], value[0]);
+                if (id != null)
+                    saveItemInstance(id, textBox2.Text, value[2], value[3], value[4], value[5], value[0]);
             }
         }
     }

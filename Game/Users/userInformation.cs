@@ -35,6 +35,8 @@ namespace Woodpecker.Game.Users
         /// </summary>
         public int Film;
 
+        public int Multiplier = 1;
+
         /// <summary>
         /// The current badge of this user. If blank, then no badge is used.
         /// </summary>
@@ -144,7 +146,7 @@ namespace Woodpecker.Game.Users
         /// </summary>
         public void updateValueables()
         {
-            Database Database = new Database(false, true);
+            Database Database = new Database(true, true);
             Database.addParameterWithValue("userid", this.ID);
             Database.addParameterWithValue("credits", this.Credits);
             Database.addParameterWithValue("tickets", this.Tickets);

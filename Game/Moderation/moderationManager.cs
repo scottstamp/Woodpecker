@@ -277,9 +277,11 @@ namespace Woodpecker.Game.Moderation
 
                         #region Determine last access
                         if (targetSession == null)
-                            lastAccess = Engine.Game.Users.getLastAccess(targetUserID);
+                            lastAccess = Engine.Game.Users.getLastAccess(targetUserID); // Path can return null
                         else
                             lastAccess = targetSession.Access;
+
+                        if (lastAccess == null) return false;
 
                         if ((banIP || banMachine) && lastAccess == null)
                             return false; // Can't ban IP and/or machine with no access log

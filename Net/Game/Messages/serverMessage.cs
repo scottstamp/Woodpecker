@@ -53,6 +53,13 @@ namespace Woodpecker.Net.Game.Messages
             retCast.Append(Text);
             return retCast;
         }
+
+        public static serverMessage createCastAction(string target, string action)
+        {
+            serverMessage retCast = new serverMessage(71); // "AG"
+            retCast.Append($"{target} {action}");
+            return retCast;
+        }
         #endregion
     }
 }

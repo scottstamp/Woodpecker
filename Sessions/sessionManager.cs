@@ -16,7 +16,7 @@ namespace Woodpecker.Sessions
         /// <summary>
         /// A System.Collections.Dictionary (int, Woodpecker.Sessions.Session) containing all the Woodpecker.Sessions.Session objects, with an integer as key.
         /// </summary>
-        private Dictionary<uint, Session> mSessions = new Dictionary<uint, Session>();
+        public static Dictionary<uint, Session> mSessions = new Dictionary<uint, Session>();
         /// <summary>
         /// The amount of sessions in the session manager.
         /// </summary>

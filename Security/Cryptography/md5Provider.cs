@@ -16,6 +16,8 @@ namespace Woodpecker.Security.Cryptography
         /// The base salt to use.
         /// </summary>
         public string baseSalt;
+
+        MD5CryptoServiceProvider provider;
         #endregion
 
         #region Methods
@@ -26,9 +28,12 @@ namespace Woodpecker.Security.Cryptography
         /// <param name="partialSalt">The additional salt to use. The total input data will be Input + basesalt + partialSalt.</param>
         public string Hash(string Input, string partialSalt)
         {
+            provider = new MD5CryptoServiceProvider();
+
             string szData = Input + this.baseSalt + partialSalt;
             byte[] workData = new UTF7Encoding().GetBytes(szData);
-            workData = new MD5CryptoServiceProvider().ComputeHash(workData);
+            workData = provider.ComputeHash(workData);
+            provider.Dispose();
 
             StringBuilder sb = new StringBuilder(32);
             foreach (byte b in workData)
@@ -40,9 +45,12 @@ namespace Woodpecker.Security.Cryptography
         }
         public string Hash2(string Input, string partialSalt)
         {
+            provider = new MD5CryptoServiceProvider();
+
             string szData = Input + this.baseSalt + partialSalt;
             byte[] workData = new UTF7Encoding().GetBytes(szData);
-            workData = new MD5CryptoServiceProvider().ComputeHash(workData);
+            workData = provider.ComputeHash(workData);
+            provider.Dispose();
             
             StringBuilder sb = new StringBuilder(32);
             foreach (byte b in workData)
@@ -54,8 +62,12 @@ namespace Woodpecker.Security.Cryptography
         }
         public string rawHash(ref string Input)
         {
+            provider = new MD5CryptoServiceProvider();
+
             byte[] workData = Configuration.charTable.GetBytes(Input);
-            workData = new MD5CryptoServiceProvider().ComputeHash(workData);
+            workData = provider.ComputeHash(workData);
+            provider.Dispose();
+
             return Configuration.charTable.GetString(workData);
         }
         #endregion

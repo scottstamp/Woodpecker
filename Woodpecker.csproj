@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Configuration.cs" />
+    <Compile Include="Core\Extensions.cs" />
     <Compile Include="Core\Logging.cs" />
     <Compile Include="Game\Arcade\Games\arcadeGame.cs" />
     <Compile Include="Game\Arcade\Games\arcadeGameArena.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Game\reactorGenericMethods.cs" />
     <Compile Include="Game\Messenger\messengerBuddy.cs" />
     <Compile Include="Game\Messenger\messengerReactor.cs" />
+    <Compile Include="Game\Rooms\Instance\Items\Special cast actions\Camera.cs" />
     <Compile Include="Game\Rooms\Instance\Items\Special floor items\Bots.cs" />
     <Compile Include="Game\Rooms\Instance\Items\Special floor items\Dices.cs" />
     <Compile Include="Game\Rooms\Instance\Items\floorItems.cs" />

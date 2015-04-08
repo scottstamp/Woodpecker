@@ -11,6 +11,7 @@ using Woodpecker.Game.Store;
 using Woodpecker.Game.Rooms;
 using Woodpecker.Game.Moderation;
 using Woodpecker.Game.Items;
+using Woodpecker.Game.Arcade;
 
 namespace Woodpecker.Game.Users
 {
@@ -59,7 +60,8 @@ namespace Woodpecker.Game.Users
                     Engine.Game.Users.addUserSession(this.Session);
                     Session.gameConnection.reactorHandler.Register(new userReactor()); // Register a userReactor
                     Session.gameConnection.reactorHandler.Register(new storeReactor()); // Register a storeReactor
-                    Session.gameConnection.reactorHandler.Register(new navigatorReactor());
+                    Session.gameConnection.reactorHandler.Register(new navigatorReactor()); // Register a navigatorReactor
+                    Session.gameConnection.reactorHandler.Register(new arcadeReactor()); // Register an arcadeReactor
                     if (Session.User.hasFuseRight("fuse_moderator_access"))
                         Session.gameConnection.reactorHandler.Register(new moderationReactor());
 

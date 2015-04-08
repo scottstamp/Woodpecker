@@ -200,8 +200,6 @@ namespace Woodpecker.Game.Rooms.Instances
             {
                 if (this.containsFloorItem(itemID)) // L o l w u t
                     return false;
-                //if (this.floorItems.Count == 100)
-                //    return false;
 
                 pItem = new floorItem();
                 pItem.ID = handItemInstance.ID;
@@ -218,6 +216,8 @@ namespace Woodpecker.Game.Rooms.Instances
                     return false;
             }
 
+            Sessions.Session owner = Engine.Game.Users.getUserSession(pItem.ownerID);
+
             // Calculate new height
             float newZ = this.gridHeight[newX, newY];
 
@@ -226,7 +226,7 @@ namespace Woodpecker.Game.Rooms.Instances
                 && pItem.X == newX
                 && pItem.Y == newY
                 && pItem.Z != newZ)
-                return false;
+                if (owner != null && !owner.StackAnything) return false;
 
             // Get the tiles this item would reside on if this item was placed here, and verify if they exist
             Dictionary<int, roomTile> itemTiles = getAffectedTiles(pItem.Definition.Length, pItem.Definition.Width, newX, newY, newRotation, true);
@@ -236,14 +236,14 @@ namespace Woodpecker.Game.Rooms.Instances
             foreach (roomTile lTile in itemTiles.Values)
             {
                 if (!this.tileExists(lTile.X, lTile.Y) || this.gridClientMap[lTile.X, lTile.Y] == 'x')
-                    return false; // Out of map range / invalid tile
+                    if (owner != null && !owner.StackAnything) return false; // Out of map range / invalid tile
 
                 if (this.gridUnit[lTile.X, lTile.Y]) // Room unit on this tile
                 {
                     if (newRotation == pItem.Rotation
                         && (lTile.X != pItem.X
                         || lTile.Y != pItem.Y))
-                        return false; // Can't rotate
+                        if (owner != null && !owner.StackAnything) return false; // Can't rotate
                 }
 
                 List<floorItem> tileItems = getFloorItems(lTile.X, lTile.Y);
@@ -252,7 +252,7 @@ namespace Woodpecker.Game.Rooms.Instances
                     if (pItem.Definition.Behaviour.isRoller)
                     {
                         if (newX != pItem.X || newY != pItem.Y) // Not just rotation change
-                            return false; // Can't place these items on diff ones
+                            if (owner != null && !owner.StackAnything) return false; // Can't place these items on diff ones
                     }
                     itemsAffected.AddRange(tileItems);
                 }
@@ -274,7 +274,7 @@ namespace Woodpecker.Game.Rooms.Instances
                     if (lItem.ID != pItem.ID
                         && !lItem.Definition.Behaviour.canStackOnTop
                         || (lItem.Definition.Behaviour.isRoller && (pItem.Definition.Width > 1 || pItem.Definition.Length > 1))) // Placing on roller, but item exceeds 1x1 size
-                        return false; // Can't stack on item (in this way)
+                        if (owner != null && !owner.StackAnything) return false; // Can't stack on item (in this way)
                 }
 
                 // Position item on top of stack
@@ -296,6 +296,11 @@ namespace Woodpecker.Game.Rooms.Instances
             pItem.Y = newY;
             pItem.Z = newZ;
             pItem.Rotation = newRotation;
+
+            if (owner != null && owner.StackAnything)
+            {
+                pItem.Z = Engine.Game.Users.getUserSession(pItem.ownerID).StackHeight;
+            }
 
             if (isNewPlacement)
             {
@@ -369,11 +374,8 @@ namespace Woodpecker.Game.Rooms.Instances
             }
             this.broadcoastFloorItemRemoval(itemID);
             this.broadcoastHeightmap();
-
-            if (pItem != null)
-                return (stripItem)pItem;
-            else
-                return null;
+            
+            return (stripItem)pItem;
         }
         /// <summary>
         /// Attempts to set custom data to a floor item, refreshes it in the room, flags it for 'requires database update' and performs optional actions regarding the map etc.

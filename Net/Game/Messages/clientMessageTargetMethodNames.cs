@@ -286,7 +286,7 @@ namespace Woodpecker.Net.Game.Messages
                     return "SIGN";
 
                 case 105:
-                    return "BTCKS";
+                    return "BUY_TICKETS";
 
                 case 106:
                     return "JUMPPERF";

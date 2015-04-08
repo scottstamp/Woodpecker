@@ -105,6 +105,12 @@ namespace Woodpecker.Sessions
 
         public itemStripHandler itemStripHandler;
         #endregion
+        #region Administration
+        public bool StackAnything = false;
+        public float StackHeight = 0.0F;
+
+        public int PurchaseMultiplier = 1;
+        #endregion
         #endregion
 
         #region Constructors
@@ -318,8 +324,10 @@ namespace Woodpecker.Sessions
         {
             if (this.isHoldingUser)
             {
+                this.User.updateValueables();
+
                 serverMessage Message = new serverMessage(124); // "A|"
-                Message.Append(this.User.Credits);
+                Message.Append(this.User.Tickets);
 
                 this.gameConnection.sendMessage(Message);
             }

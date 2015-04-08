@@ -175,8 +175,12 @@ namespace Woodpecker
             /// <param name="Message">The reason of the shutdown.</param>
             public static void Stop(string Message)
             {
+                Stop(false, Message);
+            }
+
+            public static void Stop(bool Abrupt, string Message) {
                 Configuration.setConfigurationValue("server.status", "offline");
-                Logging.Log("Shutting down, reason: " + Message);
+                if (!Abrupt) Logging.Log("Shutting down, reason: " + Message);
                 mGameConnectionManager.stopListening();
                 mSessionManager.stopPingChecker();
                 mSessionManager.stopMessageSizeChecker();
@@ -187,6 +191,7 @@ namespace Woodpecker
                 mMainForm.stripMenu.Enabled = false;
                 mMainForm.mShutdown = true;
                 Logging.Log("Woodpecker safely shutdown! You can now close the application.");
+                if (Abrupt) Environment.Exit(0);
             }
             #endregion
         }

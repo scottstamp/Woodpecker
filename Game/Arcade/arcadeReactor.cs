@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Woodpecker.Game;
+using Woodpecker.Net.Game.Messages;
 
 namespace Woodpecker.Game.Arcade
 {
@@ -23,13 +24,51 @@ namespace Woodpecker.Game.Arcade
         /// </summary>
         private bool performTicketCheck()
         {
-            if (Session.User.Tickets >= 2)
+            if (Session.User.Tickets >= 1)
             {
                 return true;
             }
 
             sendGameError(2);
             return false;
+        }
+
+        /// <summary>
+        /// 105 - "Ai"
+        /// </summary>
+        public void BUY_TICKETS()
+        {
+            int bundleID = Request.getNextWiredParameter();
+            int ticketsPurchased = (bundleID == 1) ? 2 : 20;
+            Users.userInformation recipient =
+                Engine.Game.Users.getUserInfo(Request.Content.Substring(3), true);
+
+            if (recipient != null)
+            {
+                Sessions.Session session = Engine.Game.Users.getUserSession(recipient.ID);
+                if (session != null)
+                {
+                    session.User.Tickets += ticketsPurchased;
+                    session.refreshTickets();
+                    if (session != this.Session)
+                    {
+                        serverMessage alert = new serverMessage(139); // "BK"
+                        alert.Append($"{this.Session.User.Username} has sent you {ticketsPurchased} tickets.");
+                        session.gameConnection.sendMessage(alert);
+                    }
+                    else
+                    {
+                        Response.Initialize(139); // "BK"
+                        Response.Append("Tickets purchased.");
+                        sendResponse();
+                    }
+                }
+                else
+                {
+                    recipient.Tickets += ticketsPurchased;
+                    recipient.updateValueables();
+                }
+            }
         }
         
         /// <summary>
@@ -51,7 +90,11 @@ namespace Woodpecker.Game.Arcade
         public void START_OBSERVING_GAME()
         {
             int gameID = Request.getNextWiredParameter();
-            arcadeGame pGame = Engine.Game.Arcade.getLobby(Session.roomID).getGame(gameID);
+            arcadeGameLobby lobby = Engine.Game.Arcade.getLobby(Session.roomID);
+
+            if (lobby == null) return;
+
+            arcadeGame pGame = lobby.getGame(gameID);
 
             Response.Initialize(233); // "Ci"
             if(pGame != null)
@@ -139,7 +182,11 @@ namespace Woodpecker.Game.Arcade
         /// </summary>
         public void PLAY_AGAIN()
         {
-            arcadeGame pGame = Engine.Game.Arcade.getLobby(Session.roomID).getGame(mGameID);
+            arcadeGameLobby lobby = Engine.Game.Arcade.getLobby(Session.roomID);
+
+            if (lobby == null) return;
+
+            arcadeGame pGame = lobby.getGame(mGameID);
             if (pGame != null && pGame.State == arcadeGame.arcadeGameState.Ended)
             {
                 if (performTicketCheck() == true)

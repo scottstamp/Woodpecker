@@ -76,7 +76,9 @@ namespace Woodpecker.Game.Rooms.Instances.Interaction
 
                         pItem = Engine.Game.Items.createItemInstance(pItem.Definition.ID, Session.roomInstance.Information.ownerID, "FFFF33");
                     }
-                    Success = Session.roomInstance.placeWallItem(pItem, wallPosition);
+
+                    if (pItem != null)
+                        Success = Session.roomInstance.placeWallItem(pItem, wallPosition);
                 }
                 else
                 {
@@ -227,14 +229,25 @@ namespace Woodpecker.Game.Rooms.Instances
         /// </summary>
         private void unloadItems()
         {
-            if (this.floorItems != null)
-                this.floorItems.Clear(); this.floorItems = null;
-            if (this.wallItems != null)
-                this.wallItems.Clear(); this.wallItems = null;
-            if (this.roomPets != null)
-                this.roomPets.Clear(); this.roomPets = null;
-            if (this.roomBots != null)
-                this.roomBots.Clear(); this.roomBots = null;
+            if (this.floorItems != null) {
+                this.floorItems.Clear();
+                this.floorItems = null;
+            }
+
+            if (this.wallItems != null) {
+                this.wallItems.Clear();
+                this.wallItems = null;
+            }
+
+            if (this.roomPets != null) {
+                this.roomPets.Clear();
+                this.roomPets = null;
+            }
+
+            if (this.roomBots != null) {
+                this.roomBots.Clear();
+                this.roomBots = null;
+            }
         }
         #endregion
     }

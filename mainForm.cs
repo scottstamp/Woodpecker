@@ -173,7 +173,7 @@ namespace Woodpecker
                 Environment.Exit(-1);
             else if (MessageBox.Show("Are you sure you wish to shutdown Woodpecker?\nAll active information will be saved before closure.", "Server Shutdown", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                Engine.Program.Stop("none");
+                Engine.Program.Stop(true, "none");
             }
             else
             { 

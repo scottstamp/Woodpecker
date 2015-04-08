@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 using Woodpecker.Game.Items;
 using Woodpecker.Game.Rooms.Pathfinding;
@@ -252,6 +253,22 @@ namespace Woodpecker.Game.Rooms.Instances
         public bool tilesTouch(byte X, byte Y, byte X2, byte Y2)
         {
             return (Math.Abs(X - X2) <= 1 && Math.Abs(Y - Y2) <= 1);
+        }
+        /// <summary>
+        /// Returns true if room is public and has a camera view
+        /// </summary>
+        public bool hasCamera()
+        {
+            String[] rooms = new string[] { "pool_b", "md_a" };
+            return rooms.Any(this.Information.modelType.Contains);
+        }
+        /// <summary>
+        /// Returns true if room is public and has a changing room
+        /// </summary>
+        public bool hasChangeRoom()
+        {
+            String[] rooms = new string[] { "pool_a", "md_a" };
+            return rooms.Any(this.Information.modelType.Contains);
         }
         private bool tileBlockedByRoomUnit(byte X, byte Y)
         {

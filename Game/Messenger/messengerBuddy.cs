@@ -51,14 +51,18 @@ namespace Woodpecker.Game.Messenger
             if (isOnline) // User is online
             {
                 Session userSession = Engine.Game.Users.getUserSession(this.ID);
-                if (userSession.inRoom)
+                if (userSession == null) FSB.Append("Hotel View");
+                else
                 {
-                    if (userSession.roomInstance.Information.isUserFlat)
-                        FSB.Append("Floor1a");
-                    else
-                        FSB.Append(userSession.roomInstance.Information.Name);
+                    if (userSession.inRoom)
+                    {
+                        if (userSession.roomInstance.Information.isUserFlat)
+                            FSB.Append("Floor1a");
+                        else
+                            FSB.Append(userSession.roomInstance.Information.Name);
+                    }
+                    this.lastActivity = DateTime.Now;
                 }
-                this.lastActivity = DateTime.Now;
             }
             else
                 FSB.Append("Hotel View");

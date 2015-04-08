@@ -148,6 +148,7 @@ namespace Woodpecker.Game.Rooms.Instances
             if (Session.authenticatedTeleporter == 0)
             {
                 roomModel Model = this.getModel();
+                if (Model == null) return;
                 newUser.X = Model.doorX;
                 newUser.Y = Model.doorY;
                 newUser.Z = Model.doorZ;

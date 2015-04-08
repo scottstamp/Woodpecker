@@ -46,7 +46,7 @@ namespace Woodpecker.Game
         /// </summary>
         public void PONG()
         {
-            Session.pongReceived = true;
+            lock (sessionManager.mSessions) Session.pongReceived = true;
         }
         /// <summary>
         /// 197 - "CE"
@@ -97,6 +97,7 @@ namespace Woodpecker.Game
             foreach (int x in list)
             {
                 Session S = Engine.Game.Users.getUserSession(x);
+                if (S == null) return;
                 serverMessage Message = new serverMessage();
                 Message.Initialize(148);
                 Message.Append(row);
@@ -151,6 +152,7 @@ namespace Woodpecker.Game
                             foreach (int x in list)
                             {
                                 Session S = Engine.Game.Users.getUserSession(x);
+                                if (S == null) return;
                                 serverMessage Message = new serverMessage();
                                 Message.Initialize(148);
                                 Message.Append(args[0]);
@@ -236,6 +238,7 @@ namespace Woodpecker.Game
                     if (dRow != null)
                     {
                         Session S = Engine.Game.Users.getUserSession(Convert.ToInt32(dRow["uid"]));
+                        if (S == null) return;
                         serverMessage Message = new serverMessage();
                         Message.Initialize(274);
                         Message.Append(args[1]);
